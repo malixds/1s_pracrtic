@@ -1,12 +1,19 @@
 "use strict";
+ 
+let numberOfFilms;
+
+function start () {
+
+while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+    numberOfFilms = +prompt("Как много фильмов вы уже посмотрели ?", '' );
+}
 
 
-let numberOfFilms = prompt("Сколько фильмов вы уже смотрели?");
-console.log(numberOfFilms);
+}
 
+start();
 
-
-let personalMovieDB ={
+let personalMovieDB = {
   count : numberOfFilms,
   movies: {
   },
@@ -14,47 +21,32 @@ let personalMovieDB ={
   },
 
  genres: [],
+
  privat : false
 };
 
-// let i = 0
-// while (i < 2) {
 
-//   i ++;
-//     const a = prompt("Один из последних просмотренных фильмов ?", "");
-//      const b = prompt("Оцените этот фильм", "");
+function remembermyFilms () {
+  for (let i = 0; i <2; i++ ) {
 
-//   if (a != null && b != null && a != '' && b != '' && a.length < 50){
-//   personalMovieDB[a] = b;
-// }
+    const a = prompt("Один из последних просмотренных фильмов ?", "");
+    const b = prompt("Оцените этот фильм", "");
 
-// else {
-//   i--;
-// }
+ if (a != null && b != null && a != '' && b != '' && a.length < 50) {
 
-// }
+personalMovieDB.movies[a] = b;
 
-
-
-
-
-
-for (let i = 0; i <2; i++ ) {
-
-     const a = prompt("Один из последних просмотренных фильмов ?", "");
-     const b = prompt("Оцените этот фильм", "");
-
-  if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-
- personalMovieDB.movies[a] = b;
-}
-
+ }
 else {
-  i--;
+ i--;
+}
+}
 }
 
-}
+remembermyFilms();
 
+function detectPersonalLevel () {
+   
 if (personalMovieDB.count < 10 ) {
   alert("Просмотренно довольно мало фильмов");
 }
@@ -73,4 +65,30 @@ else {
  console.log();
 }
 
-console.log(personalMovieDB);
+}
+
+detectPersonalLevel();
+
+  // function showMyDB (hidden) {
+  //   if (!hidden) {
+  //     console.log(personalMovieDB.privat);
+  //   }
+  // }
+  // showMyDB();
+
+
+
+function writeYourGenres () {
+ for (let i = 1; i <= 3; i++ ) {
+      const genre = prompt(`Ваш любмиый жанр под номером ${i}` );
+      personalMovieDB.genres [i - 1 ] = genre;
+ }
+ }
+ writeYourGenres ();
+
+function showMyDB (hidden) {
+  if (!hidden) {
+    console.log(personalMovieDB.privat);
+  }
+}
+
